@@ -10,7 +10,7 @@ describe('TodoService', () => {
   let todoStoreService: TodoStoreService;
   let httpClientSpy: any;
   beforeEach(() => {
-    httpClientSpy = jasmine.createSpyObj('HttpClient', ['post']);
+    httpClientSpy = jasmine.createSpyObj('HttpClient', ['post','get']);
     todoStoreService = new TodoStoreService();
     TestBed.configureTestingModule({
       providers: [
@@ -33,7 +33,7 @@ describe('TodoService', () => {
     service.create(todoItem);
     // then
     expect(httpClientSpy.post).toHaveBeenCalledWith(
-      'https://635fc244ca0fe3c21aa3d012.mockapi.io/api/todos',todoItem
+      'https://localhost:44309/ToDos',todoItem
     )
   });
 
@@ -48,5 +48,14 @@ describe('TodoService', () => {
     // then
     expect(service.errorMessage).toEqual('create failed')
 
+  });
+
+  it('should return specific todoItem when get given id', () => {
+    
+    // when
+    service.findById(9);
+    // then
+    expect(httpClientSpy.get).toHaveBeenCalledWith(
+      'https://localhost:44309/ToDos/9')
   });
 });
