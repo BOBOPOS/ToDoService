@@ -31,6 +31,9 @@ export class ListTodoitemComponent implements OnInit {
   }
 
   public doDelete(id: number): void {
-    this.todoService.delete(id);
+    this.todoService.delete(id).subscribe(() => {
+      const index = this.toDoItems.findIndex(item => item.id === id);
+      this.toDoItems.splice(index, 1);
+    });
   }
 }

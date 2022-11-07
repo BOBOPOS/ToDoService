@@ -16,7 +16,8 @@ export class TodoitemDetailComponent implements OnInit {
 
   ngOnInit(): void {
     const id = this.activatedRoute.snapshot.paramMap.get('id')
-    this.todoItem = this.todoService.findById(Number(id))
-    console.log(id)
+    this.todoService.findById(Number(id)).subscribe(res => {
+      this.todoItem = res;
+    });
   }
 }

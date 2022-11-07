@@ -7,10 +7,18 @@ import { ToDoItem } from '../model/ToDoItem';
   providedIn: 'root'
 })
 export class TodoApiService {
-  public BASE_URL: string = 'https://localhost:44309/'
+  public BASE_URL: string = 'https://localhost:44309/ToDos'
   constructor(private http: HttpClient) { }
   
-  create(todoItem: ToDoItem): Observable<void> { 
-    return this.http.post<void>(`${this.BASE_URL}ToDos`,todoItem)
+  create(todoItem: ToDoItem): Observable<void> {
+    return this.http.post<void>(`${this.BASE_URL}`, todoItem)
+  }
+
+  getById(id: number): Observable<ToDoItem> {
+    return this.http.get<ToDoItem>(`${this.BASE_URL}/${id}`)
+  }
+
+  deleteById(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.BASE_URL}?id=${id}`);
   }
 }
