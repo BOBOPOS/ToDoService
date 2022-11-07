@@ -7,10 +7,10 @@ import { ToDoItem } from '../model/ToDoItem';
   providedIn: 'root'
 })
 export class TodoApiService {
-
+  public BASE_URL: string = 'https://localhost:44309/'
   constructor(private http: HttpClient) { }
-
+  
   create(todoItem: ToDoItem): Observable<void> { 
-    return this.http.post<void>('https://635fc244ca0fe3c21aa3d012.mockapi.io/api/todos',todoItem)
+    return this.http.post<void>(`${this.BASE_URL}ToDos`,todoItem)
   }
 }

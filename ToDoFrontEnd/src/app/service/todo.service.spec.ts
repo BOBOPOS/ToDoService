@@ -6,7 +6,6 @@ import { TodoStoreService } from './todo-store.service';
 import { TodoService } from './todo.service';
 import { Observable, of, throwError } from 'rxjs';
 describe('TodoService', () => {
-
   let service: TodoService;
   let todoStoreService: TodoStoreService;
   let httpClientSpy: any;
